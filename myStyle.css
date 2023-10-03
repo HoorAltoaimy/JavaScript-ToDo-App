@@ -4,11 +4,13 @@
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
 }
+
 body{
+    height: 100%;
     background-image: linear-gradient(to right bottom, #323232, #b4b0b0, #dbdbdb);   
     display: flex;
     justify-content: center;
-    height: 100%;
+    
 }
 h1{
     color: #1f1e1e;
