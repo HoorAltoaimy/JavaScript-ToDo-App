@@ -2,16 +2,16 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 body{
-    background: linear-gradient(135deg, #153677, #4e085f);
+    background-image: linear-gradient(to right bottom, #323232, #b4b0b0, #dbdbdb);   
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 }
 h1{
-    color: #fff;
+    color: #1f1e1e;
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
@@ -19,99 +19,142 @@ h1{
 }
 img{
     width: 30px;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     margin-left: 1rem;
 }
 
-/* #todo-container{
-    width: 100%;
-    height: 100px;
-    max-width: 540vh;
-    background: #fff;
-    margin: 1rem ;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-} */
-.todo{
-    background: #fff;
-    margin: 1rem ;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: left;
+.todo-container{
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #todo-form{
-    background: transparent;
-    margin-left: 1.5rem;
+    margin-top: 3rem;
+    margin-left: 1rem;
     margin-bottom: 1rem;
 }
 #todo-form label{
-    background: transparent;
-    margin-left: 0;
-    margin-right: 0.7rem;
-    color: #fff;
+    margin-right: 1.7rem;
+    color: black;
 }
-#todo-form2{
-    background: transparent;
-    margin-bottom: 1.5rem;
-    margin-left: 1rem;
-}
-#todo-form2 label{
-    background: transparent;
-    margin-left: 10px;
-    color: #fff;
-}
-input{
-    border-radius: 20px;
-    background: transparent;
-    padding: 10px;
-    font-weight: 14px;
-    border-color: #fff;
-    color: #fff;
-    margin-left: 10px;
-    margin-right: 15px;
-}
-
-.btn{
+.add-btn{
     border: none;
     outline: none;
-    padding: 10px 30px;
-    margin: 0.5rem;
-    margin-top: 1rem;
+    padding: 5px 20px;
+    margin-left: 1rem;
     color: #fff;
     font-size: 15px;
     cursor: pointer;
     border-radius: 40px; 
-    background-image: linear-gradient(to right, #153677 0%, #4e4376  51%, #4e085f  100%);
+    background-color: #d3324d;
     transition: 0.5s;
-    background-size: 200% auto;       
-    box-shadow: 0 0 20px #e8b1f5;  
 }
-.btn:hover {
-    background-position: right center; 
-    color: #fff;
-} 
- 
-.description{
-    font-size: 15px;
-    padding-top: 1.5rem;
-    margin-right: 5rem ;
+button:hover {
+    box-shadow: 0 0 20px #d3324d;
+}
+#todo-form2{
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+}
+#todo-form2 label{
+    margin-right: 3.2rem;
     color: black;
+}
+input{
+    border-radius: 20px;
+    background: transparent;
+    padding: 5px;
+    font-weight: 14px;
+    border-color: #d4d3d3;
+    color: #1f1e1e;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.todo{
+    background: #d4d3d3;
+    margin: 1rem;
+    padding: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: left;
 }
 .todo-checkbox{
     margin-left: 1rem;
-    margin-top: 0.5rem;
-    margin-right: 0;
+    cursor: pointer;
+    accent-color: rgb(45, 227, 127);
+}
+.description{
+    font-size: 15px;
+    margin-left: 0;
+    padding-right: 5rem;
+    color: black;
 }
 .completed{
     text-decoration: line-through;
+}
+.edit-btn{
+    border: none;
+    outline: none;
+    margin: 0.5rem;
+    margin-left: 5rem;
+    padding-right: 8px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 40px; 
+    background-color: #d3324d;    
+    transition: 0.5s;
+    background-size: 200% auto;         
+}
+.delete-btn{
+    border: none;
+    outline: none;
+    margin: 0.5rem;
+    margin-right: 0.5rem;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 40px; 
+    background-color: #d3324d;    
+    transition: 0.5s;
+    background-size: 200% auto;         
 }
 
 p{
     font-size: 15px;
     padding-top: 1rem;
+    color: black;
+    margin-left: 1rem;
+}
+
+.filter{
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    padding: 5px 20px;
     color: #fff;
-    margin-left: 1.5rem;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 40px; 
+    background-color: #d3324d;
+    transition: 0.5s;
+    background-size: 200% auto;          
+}
+#all-btn{
+    margin-left: 1rem;
+    margin-right: 5rem;
+}
+#active-btn{
+    margin-right: 4.5rem;
 }

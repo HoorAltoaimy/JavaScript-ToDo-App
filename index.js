@@ -1,9 +1,11 @@
 const todoInput = document.getElementById("todo-input");
-const addTodoButton = document.getElementById("todo-button");
 const todoForm = document.getElementById("todo-form");
 const todoList = document.getElementById("todo-list");
 const counter = document.getElementById("counter");
 const searchInput = document.getElementById("search");
+const allButton = document.getElementById("all-btn");
+const activeButton = document.getElementById("active-btn");
+const completedButton = document.getElementById("completed-btn");
 
 let todos = [];
 
@@ -21,8 +23,7 @@ const addTodo = (event) =>{
         todos.push(todo);
         listTodos(todos);
         localStorage.setItem('todos', JSON.stringify(todos));
-        //reset the input field
-        todoInput.value = '';
+        todoForm.reset();
     }else{
         alert('Enter to do');
     }
@@ -33,7 +34,6 @@ todoForm.addEventListener("submit", addTodo);
 /*-----Rendering Todo List-----*/
 const listTodos = (todos) => {
     todoList.innerHTML = '';
-
     let activeCount = 0;
     let completedCount = 0;
 
@@ -57,15 +57,21 @@ const listTodos = (todos) => {
         todoItem.appendChild(description);
 
         const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.classList.add("btn");
+        const editImage = document.createElement('img');
+        editImage.src = 'images/edit.png';
+        editButton.textContent = '';
+        editButton.appendChild(editImage);
+        editButton.classList.add("edit-btn");
         editButton.addEventListener('click', ()=> editTodo(index)); //callback function
         todoItem.appendChild(editButton);
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add("btn");
-        deleteButton.addEventListener('click', ()=> deleteTodo(index)); //callback function
+        const deleteImage = document.createElement('img');
+        deleteImage.src = 'images/delete.png';
+        deleteButton.textContent = ''; 
+        deleteButton.appendChild(deleteImage);
+        deleteButton.classList.add("delete-btn");
+        deleteButton.addEventListener('click', ()=> deleteTodo(index)); 
         todoItem.appendChild(deleteButton);
 
         todoList.appendChild(todoItem);
@@ -78,8 +84,8 @@ const listTodos = (todos) => {
         }
     }
     /*-----Todo Counter-----*/
-    counter.textContent = `Total number of To-Do: ${todos.length} |
-    Completed To-Do: ${completedCount}`;
+    counter.textContent = `Total number of tasks: ${todos.length} |
+    Active tasks: ${activeCount} | Completed tasks: ${completedCount}`;
 };
 
 /*-----Completing a Todo-----*/
@@ -91,29 +97,24 @@ const toggleComplete = (index) => {
 
 /*-----Deleting a Todo-----*/
 const deleteTodo = (index) => {
-    try {
-        if(index >= 0 && index < todos.length){
-            todos.splice(index, 1);
-            listTodos(todos);
-            localStorage.setItem('todos', JSON.stringify(todos)); //update the local storage after delete
-        }
-        else{
-            throw Error('invalid index number');
-        }
-    } 
-    catch (error) {
-        console.error(error);
+    if(index >= 0 && index < todos.length){
+        todos.splice(index, 1);
+        listTodos(todos);
+        localStorage.setItem('todos', JSON.stringify(todos)); //update the local storage after delete
+    }
+    else{
+        throw Error('invalid index number');
     }
 };
 
-/*-----Editing a Todo-----*/ //the prompt needs some enhancement
+/*-----Editing a Todo-----*/ 
 const editTodo = (index) => {
     console.log(todos[index]);
     const description = prompt("Edit todo:", todos[index].description);
     if(description){
-        todos[index].description = description; //update the description
-    localStorage.setItem('todos', JSON.stringify(todos)); //update the local storage
-    listTodos(todos);
+        todos[index].description = description; 
+        localStorage.setItem('todos', JSON.stringify(todos)); 
+        listTodos(todos);
     }
     else{
         alert('Todo can not be empty');
@@ -122,6 +123,20 @@ const editTodo = (index) => {
 };
 
 /*-----Filtering Todo List-----*/
+const allTodos = () => {
+    listTodos(todos);
+}
+const activeTodos = () =>{
+    const activeTodo = todos.filter(todo => !todo.completed);
+    listTodos(activeTodo);
+}
+const completedTodos = () => {
+    const completedTodo = todos.filter(todo => todo.completed);
+    listTodos(completedTodo);
+}
+allButton.addEventListener('click', () => allTodos());
+activeButton.addEventListener('click', () => activeTodos());
+completedButton.addEventListener('click', () => completedTodos() );
 
 /*-----Persistent Storage-----*/
 const todosFromLocalStorage = JSON.parse(localStorage.getItem('todos'));
@@ -137,5 +152,6 @@ const searchTodo = (text) =>{
     listTodos(searchedTodos);
 };
 searchInput.addEventListener('keyup', (event)=>{
+    event.preventDefault();
     searchTodo(event.target.value);
 });

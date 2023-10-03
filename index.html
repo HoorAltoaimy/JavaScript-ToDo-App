@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="myStyle.css">
     <title>To Do App</title>
 </head>
 <body>
-    <div id="todo-container">
+    <div class="todo-container" id="todo-container">
         <h1><img src="images/check.png" alt="check-icon"> To-Do List </h1>
         <form action="" id="todo-form">
-            <label for="todo-input">Enter To-Do:</label>
+            <label for="todo-input">Enter task:</label>
             <input type="text" id="todo-input">
-            <button type="submit" class="btn" id="todo-button">Add</button>
+            <button type="submit" class="add-btn" id="todo-button">Add</button>
         </form>
 
         <form action="" id="todo-form2">
-        <label for="search">Search To-Do: </label>
+        <label for="search">Search: </label>
         <input type="text" name="" id="search">
         </form>
 
         <div id="todo-list"></div>
 
         <p id="counter">Total number of todos: 0</p>
+        <button type="submit" class="filter" id="all-btn">All</button>
+        <button type="submit" class="filter" id="active-btn">Active</button>
+        <button type="submit" class="filter" id="completed-btn">Completed</button>
     </div>
     
     <script src="index.js"></script>
