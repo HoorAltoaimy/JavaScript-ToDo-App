@@ -153,5 +153,11 @@ const searchTodo = (text) =>{
 };
 searchInput.addEventListener('keyup', (event)=>{
     event.preventDefault();
-    searchTodo(event.target.value);
+    let searchText = event.target.value.trim(); 
+    if(searchText) {
+        searchTodo(event.target.value);
+    } 
+    else {
+    alert('Enter text to search')
+    }  
 });
